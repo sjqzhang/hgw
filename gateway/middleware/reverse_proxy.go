@@ -302,7 +302,9 @@ func (p *ReverseProxy) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 			p.logf("suppressing panic for copyResponse error in test; copy error: %v", err)
 			return
 		}
-		panic(http.ErrAbortHandler)
+		// TODO
+		//panic(http.ErrAbortHandler)
+		return
 	}
 	defer p.getSuccessHandler()(rw, outreq)
 	res.Body.Close() // close now, instead of defer, to populate res.Trailer
